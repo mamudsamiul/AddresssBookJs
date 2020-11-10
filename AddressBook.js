@@ -115,6 +115,10 @@ function deleteContact(fName, lName){
         console.log("Contact Does Not Exist");
     }
 }
+function countContact(count) {
+    count += 1;
+    return count;
+}
 try{
     addressBookArr.push(new Contact("Liton", "Molla", "Malda", "Malda", "West Bengal", "752101", "91 9898989898", "liton@gmail.com"));
     }catch(e){
@@ -126,8 +130,9 @@ try{
         console.error(e);
     }
 console.log(addressBookArr);
-
+console.log("No of contacts : "+ addressBookArr.reduce(countContact, 0));
 editContact("Liton", "Molla", "address", "Kolkata");
 console.log(addressBookArr);
 deleteContact("Liton", "Molla");
 console.log(addressBookArr);
+console.log("No of contacts : "+ addressBookArr.reduce(countContact, 0));
