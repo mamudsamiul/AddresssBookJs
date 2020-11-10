@@ -75,14 +75,50 @@ class Contact {
 }  
 
 let addressBookArr = new Array();
-try{
-addressBookArr.push(new Contact("Liton", "Molla", "Malda", "Malda", "West Bengal", "752101", "91 9898989898", "liton@gmail.com"));
-}catch(e){
-    console.error(e);
+
+function contactExists(fName, lName){
+    return addressBookArr.some(u => u.firstName == fName && u.lastName == lName);
+}
+
+function editContact(fName, lName, property, value){
+    if(contactExists(fName, lName)){
+    switch(property){
+        case "address":
+            addressBookArr.find((contact) => contact.firstName == fName).address = value;
+            break;
+        case "city":
+            addressBookArr.find((contact) => contact.firstName == fName).city = value;
+            break;
+        case "state":
+            addressBookArr.find((contact) => contact.firstName == fName).state = value;
+            break;
+        case "zip":
+            addressBookArr.find((contact) => contact.firstName == fName).zip = value;
+            break;
+        case "phone":
+            addressBookArr.find((contact) => contact.firstName == fName).phoneNo = value;
+            break;
+        case "email":
+            addressBookArr.find((contact) => contact.firstName == fName).email = value;
+            break;
+        default:
+            console.log("Enter valid property");
+    }
+  }else{
+      console.log("Contact Does Not Exist");
+  }
 }
 try{
-    let contact = new Contact("Samiul", "Mamud", "Berhampore", "Murshidabad", "wb", "742101", "91 9876543210", "xyz@gmail.com");
-}catch(e){
-    console.error(e);
-}
+    addressBookArr.push(new Contact("Liton", "Molla", "Malda", "Malda", "West Bengal", "752101", "91 9898989898", "liton@gmail.com"));
+    }catch(e){
+        console.error(e);
+    }
+    try{
+        let contact = new Contact("Samiul", "Mamud", "Berhampore", "Murshidabad", "wb", "742101", "91 9876543210", "xyz@gmail.com");
+    }catch(e){
+        console.error(e);
+    }
+console.log(addressBookArr);
+
+editContact("Liton", "Molla", "address", "Kolkata");
 console.log(addressBookArr);
